@@ -1,8 +1,27 @@
+resource "tls_private_key" "pk" {
+  algorithm = "RSA"
+  rsa_bits = 4096
+}
+resource "local_sensitive_file" "pem_file" {
+  filename = pathexpand("./sshkeys/key")
+  file_permission = "600"
+  directory_permission = "700"
+  content = tls_private_key.pk.private_key_pem
+}
+resource "local_file" "pem_file_pub" {
+  filename = pathexpand("./sshkeys/key.pub")
+  file_permission = "644"
+  directory_permission = "700"
+  content = tls_private_key.pk.public_key_pem
+
+}
+
 resource "arvan_iaas_sshkey" "wireguard_SSHKEY" {
   region = var.arvan_region
   name = var.wireguard_sshkey_name
-  public_key = file(var.sshkey_file_path)
+  public_key = tls_private_key.pk.public_key_openssh
 }
+
 
 resource "arvan_iaas_abrak" "wireguard" {
   region = var.arvan_region
