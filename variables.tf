@@ -13,7 +13,3 @@ variable "wireguard_sshkey_name" {
 variable "server_name" {
   default = "wireguard-server-ir"
 }
-
-variable "sshkey_file_path" {
-  default = "./sshkeys/key.pub"
-}
