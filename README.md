@@ -14,17 +14,9 @@ You need to have an **API-KEY** from ArvanCloud to fill **apikey** in **provider
 
 
 ## Run
-You have to provide sshkey for the ansible, or use random sshkey that is already available in directory.
+Terraform creates a random sshkey in **sshkey** directory to connect to the created server.
 
-to create:
-```bash
-ssh-keygen -f ./sshkeys/key
-```
-or change the permission of existing key
-```bash
-chmod 600 ./sshkeys/key
-```
-then you can run terraform:
+You can run terraform:
 
 ```bash
 terraform init
