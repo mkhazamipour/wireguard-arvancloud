@@ -23,3 +23,5 @@ terraform init
 terraform apply
 terraform destroy
 ```
+### Demo
+[![asciicast](https://asciinema.org/a/510962.svg)](https://asciinema.org/a/510962)
